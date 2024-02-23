@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        @font-face {
+            font-family: 'SokchoBadaDotum';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        html {
+            font-family: SokchoBadaDotum;
+
+        }
+
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            min-width: 1350px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        .aaa {
+            min-width: 1350px;
+
+        }
+
+        .aaa a:hover {
+            color: rgb(95, 95, 95);
+        }
+
+        .container {
+            width: 1350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gg {
+            background-color: rgba(235, 172, 172, 0.226);
+            color: white;
+            margin-bottom: 30px;
+
+            background-image: url(https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg);
+            background-position: center;
+            background-size: cover;
+            background-blend-mode: multiply;
+        }
+
+        .cards {
+            margin: 0 auto;
+
+            width: calc(100vh);
+        }
+
+        .myp {
+            display: none;
+            margin: 20px auto;
+            width: 500px;
+            padding: 10px;
+            border: 2px solid gray;
+            border-radius: 6px;
+        }
+
+        .mybtn {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: right;
+        }
+
+        .myp>.mybtn>button {
+            width: 100%;
+            font-size: 1.4rem;
+        }
+
+        .myp>.input-group>.form-select>option,
+        .myp>.input-group>.form-select,
+        .form-floating>.form-control {
+            color: white;
+            background-color: black;
+        }
+
+        .form-floating>label {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <header class="p-3 text-bg-dark aaa">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-danger">Sprt</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">홈</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">찜한 컨탠츠</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">오늘 서울온도는 <i id="Z7"></i><span id="Z8"></span></a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                        aria-label="Search">
+                </form>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2">Login</button>
+                    <button type="button" class="btn btn-warning">Sign-up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="gg">
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <h1 id="BB" class="display-5 fw-bold awswaw">곡성 마을</h1>
+                <p class="col-md-8 fs-4">곡성에 말도 안되게 큰 돼지가 산다고 하는데, 이 돼지를 도축하느냐 아니면 관광자원으로 쓰느냐! 축산장관과 관광장관의 숨막히는 대결전.</p>
+                <button class="btn btn-outline-light" type="button">이 내용은 전부 픽션입니다.</button>
+                <button id="openzzzz55" class="btn btn-outline-light" type="button">....보러가기?.</button>
+            </div>
+        </div>
+    </div>
+    <div class="myp" id="AAAAAA">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="img" placeholder="무림이미지">
+            <label for="floatingInput">무림이미지</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="day" placeholder="무림날자">
+            <label for="floatingInput">무림날자</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="tit" placeholder="타이틀">
+            <label for="floatingInput">타이틀</label>
+        </div>
+        <div class="input-group mb-3">
+            <button type="button" class="btn btn-danger">별점</button>
+            <select class="form-select" id="star" aria-label="Example select with button addon">
+                <option selected>별점 선택</option>
+                <option value="⭐">⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="gggg" placeholder="무림원한">
+            <label for="floatingInput">무림원한</label>
+        </div>
+        <div class="mybtn">
+            <button type="button" class="btn btn-danger" id="newcards">죽이기</button>
+        </div>
+    </div>
+    <div class="cards">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+
+        </div>
+    </div>
+</body>
+<script type="module">
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyCVd8C2rs2Wbh2j3dGnPEYl8_Ap99WZfAA",
+        authDomain: "rehamus-4349e.firebaseapp.com",
+        projectId: "rehamus-4349e",
+        storageBucket: "rehamus-4349e.appspot.com",
+        messagingSenderId: "199277879635",
+        appId: "1:199277879635:web:901dc64f8d3e8f28a901a6",
+        measurementId: "G-M1VXRZKM0V"
+    };
+
+    // Firebase 인스턴스 초기화
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    $('#openzzzz55').click(function () {
+        $('#AAAAAA').toggle();
+        $('#BB').toggle($('#BB').text('주라기 월드'));
+    });
+
+
+    $('.awswaw').click(function () {
+        alert('넷플릭스 보러왔어? 잔넨');
+        $(this).text('허접');
+    });
+
+    $('#newcards').click(async function () {
+        let tit = $('#tit').val();
+        let gggg = $('#gggg').val();
+        let img = $('#img').val();
+        let day = $('#day').val();
+        let star = $('#star').val();
+
+        let doc = {
+            'img': img,
+            'tit': tit,
+            'gggg': gggg,
+            'day': day,
+            'star' : star
+        };
+        
+        await addDoc(collection(db, "spartaN"), doc);
+        
+        alert("저장 완료됌");
+
+        window.location.reload();
+    });
+
+    let docs = await getDocs(collection(db, "spartaN"));
+    docs.forEach((doc) => {
+        let row = doc.data();
+        console.log(row);
+
+        let  tit = row['tit']
+        let  gggg = row['gggg']
+        let  img = row['img']
+        let  day = row['day']
+        let  star = row['star']
+
+        let cardsc = 
+        ` <div class="col">
+                <div class="card h-100">
+                    <img src="${img}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${tit}</h5>
+                        <p class="card-text">${gggg}.</p>
+                        <p class="card-text">${star}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">${day}</small>
+                    </div>
+                </div>
+            </div>`
+
+        $('.cards > div').prepend(cardsc)
+        
+    });
+
+    let url = 'http://spartacodingclub.shop/sparta_api/weather/seoul';
+        fetch(url).then(res => res.json()).then(data => {
+            let rows = data['temp'] ;
+            if(rows >= 20){
+                rows = " 더워요 "
+            }
+            else if( rows > 0 ){
+                rows = " 따듯해요 "
+            }
+            else{
+                rows = " 추워요 "
+            }
+            $('#Z8').text(rows);
+        })
+
+</script>
+
+</html>
