@@ -1,153 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - 023</title>
+  <title>콜렉터아이디</title>
   <link rel="stylesheet" href="./style.css">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <section class="ID_log">
+    <div class="id_Design">
+    </div>
+    <div class="id_menu">
+      <div class="title">
+        <p>로고 및 이름</p>
+      </div>
+      <div class="log_id">
+        <input type="text" placeholder="로그인" id="login_id_t">
+      </div>
+      <div class="log_pw">
+        <input type="text" placeholder="비밀번호" id="login_pw_t">
+      </div>
+      <div class="log_test">
+        <button type="button" id="login">로그인</button>
+      </div>
+      <div class="log_find">
+        <button id="F_new_Id">회원가입</button>
+        <button id="F_fw">비밀번호 찼기</button>
+      </div>
+    </div>
+    <div class="id_new">
+      <div id="" class="log_new">
+        <input type="text" placeholder="로그인" id="login_id"><br>
+        <input type="text" placeholder="비밀번호" id="login_pw"><br>
+        <button type="button" id="login_new" class="">가입</button>
+        <button type="button" id="login_f_pw" class="">찼기</button>
+        <button class="id_new_C">창닫기</button>
+      </div>
+    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </section>
 
-<aside class="side-bar">
-  <div class="side-ico">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <nav class="side-bar__menu">
-    <ul>
-      <li>
-        <a href="#">
-          <span>
-            <i class="fas fa-home"></i>
-          </span>
-          <span>HOME</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>
-            <i class="fas fa-user"></i>
-          </span>
-          <span>USER</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>
-            <i class="fas fa-list"></i>
-          </span>
-          <span>ARTICLES</span>
-        </a>
-        <ul>
-          <li>
-            <a href="#">
-              <span>
-                <i class="fas fa-flag"></i>
-              </span>
-              <span>NOTICE</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <i class="fas fa-user-friends"></i>
-              </span>
-              <span>FREE</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <span>
-            <i class="fas fa-pen"></i>
-          </span>
-          <span>WRITE</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>
-            <i class="fas fa-cog"></i>
-          </span>
-          <span>CONFIG</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" id="EXIT_end">
-          <span>
-            <i class="fas fa-times"></i>
-          </span>
-          <span>EXIT</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</aside>
-<section class="section-gallery">
-  <nav class="section-gallery__img-list">
-    <ul class="">
-      <iframe width="835" height="417.500" src="https://www.youtube.com/embed/QaaIJG9E33I?si=8FIBt5LnZYC-XctR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/201/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/202/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/203/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/204/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/205/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/206/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/207/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/208/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/209/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/210/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/211/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/212/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/213/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/214/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/215/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/216/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/217/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/218/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/219/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/220/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/221/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/222/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/223/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/224/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/225/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/226/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/227/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/228/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/229/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/230/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/231/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/232/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/233/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/234/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/235/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/236/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/237/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/238/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/239/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/240/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/241/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/242/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/243/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/244/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/245/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/246/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/247/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/248/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/249/1000/500" alt=""></a></li>
-      <li><a href="#" class="block img-box"><img src="https://picsum.photos/id/250/1000/500" alt=""></a></li>
-    </ul>
-  </nav>
-</section>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script  src="./script.js"></script>
+<button id="logout">로그아웃</button>
 
 </body>
+<script src="./script.js"></script>
+<script type="module" src="./module.js"></script>
+
 </html>
