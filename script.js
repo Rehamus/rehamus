@@ -35,6 +35,7 @@ $('.log_find > *').click(function() {
     sessionStorage.setItem("login_o",0);
     $('.id_Design').removeClass('login');
     $('.id_menu').removeClass('login');
+          window.location.reload()
   });
 /*로그아웃 끝 */
   
