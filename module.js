@@ -31,11 +31,11 @@ $('#login_new').click(async function () {
     docs.forEach((doc) => {
         let idd = doc.data();
         let t_id = idd['login_id'];
-        if(t_id == id){
+        if (t_id == id) {
             count++;
         }
     })
-    if(count != 0){
+    if (count != 0) {
         return alert("이미 존재하는 아이디 입니다.");
     }
     let doc = {
@@ -48,19 +48,19 @@ $('#login_new').click(async function () {
     alert("회원가입 완료");
 
     window.location.reload()
-    
+
 });
 /*회원가입 끝*/
 
 
 
 /*로그인 시작*/
-$('#login').click(function (){
+$('#login').click(function () {
     let t_id = $('#login_id_t').val();
     let t_pw = $('#login_pw_t').val();
-    if(t_id == "" || t_pw == ""){
+    if (t_id == "" || t_pw == "") {
         alert("제대로 입력해 주세요");
-    }else{
+    } else {
         let count = 0;
         let count2 = 0;
         docs.forEach((doc) => {
@@ -68,17 +68,17 @@ $('#login').click(function (){
             let idd = doc.data();
             let id = idd['login_id'];
             let pw = idd['login_pw'];
-            if(t_id == id && t_pw == pw){
+            if (t_id == id && t_pw == pw) {
                 console.log("로그인 완료")
                 $('.id_Design').addClass('login');
                 $('.id_menu').addClass('login');
                 $('.ID_log *').removeClass('show');
                 sessionStorage.setItem("login_o", 1);
-            }else{
+            } else {
                 count2++;
             }
         })
-        if(count == count2 ){
+        if (count == count2) {
             alert("정보가 틀립니다.");
         }
     }
@@ -88,22 +88,124 @@ $('#login').click(function (){
 
 
 /*비밀번호 찼기 시작*/
-    $('#login_f_pw').click(function () {
-        let t_id = $('#login_id').val();
-        docs.forEach((doc) => {
-            let idd = doc.data();
-            let id = idd['login_id'];
-            let pw = idd['login_pw'];
+$('#login_f_pw').click(function () {
+    let t_id = $('#login_id').val();
+    docs.forEach((doc) => {
+        let idd = doc.data();
+        let id = idd['login_id'];
+        let pw = idd['login_pw'];
 
-            if(t_id == id){
-                alert("비밀번호" + pw);
-            }
-        
-        })
-    });
+        if (t_id == id) {
+            alert("비밀번호" + pw);
+        }
+
+    })
+});
 /*비밀번호 찼기 끝*/
-    
 
+
+
+
+// 새 취미 저장버튼 클릭 시
+$("#saveHobby").click(async function () {
+    // 입력된 취미명을 가져옵니다.
+    let inputHobby = $('#inputHobby').val();
+
+    // await addDoc(collection(db, "hobbies"), { hobbyName: inputHobby });
+    const docRef = doc(db, "hobbies", inputHobby); // "hobbies" 컬렉션에 대한 참조 생성
+    await setDoc(docRef, { hobbyName: inputHobby }); // 새로운 문서 추가
+    alert('저장 완료!');
+    window.location.reload();
+});
+
+
+
+// 링크 저장 버튼 클릭 시
+$("#saveLink").click(async function () {
+    // 선택된 취미명을 가져옵니다.
+    let selectHobby = $('#selectHobby').val();
+    let contentType = $('#contentType').val();
+    let address = $('#address').val();
+
+    try {
+        // 선택한 취미가 이미 존재하는 경우 해당 문서를 업데이트합니다.
+        const docRef = doc(db, "hobbies", selectHobby); // 문서를 직접 참조
+        // await setDoc(docRef, { contentType: contentType, address: address }, { merge: true });
+        // await setDoc(docRef, {
+        //     contents: firestore.FieldValue.arrayUnion({
+        //         contentType: contentType,
+        //         address: address
+        //     })
+        // }, { merge: true });
+        await setDoc(docRef, {
+            contents: arrayUnion({
+                contentType: contentType,
+                address: address
+            })
+        }, { merge: true });
+        alert('저장 완료!');
+        window.location.reload();
+    } catch (error) {
+        console.error("Error updating document: ", error);
+        alert('저장에 실패했습니다.');
+    }
+});
+
+
+let docs2 = await getDocs(collection(db, "hobbies"));
+    docs2.forEach((doc) => {
+    let row = doc.data();
+
+    let inputHobby = row['hobbyName'];
+
+
+    //취미명 버튼 추가
+    let temp_html1 = `
+            <button id="${inputHobby}" type="button" class="btn btn-secondary">${inputHobby}</button>`;
+    $('#category').append(temp_html1);
+
+
+    //링크 저장 버튼 내에 취미 선택지 추가
+    let temp_html2 = `
+            <option value="${inputHobby}">${inputHobby}</option>`;
+    $('#selectHobby').append(temp_html2);
+
+});
+
+
+
+//!!!준빈님이 완성하실 부분!!! 취미버튼 클릭 시 - 클릭 이벤트 핸들러 정의 (버튼이 생성된 이후에 정의되어야 함)
+$(document).on("click", ".btn-secondary", async function () {
+    // 클릭된 버튼에 대한 동작 구현
+
+    // 예를 들어, 클릭된 취미에 대한 추가 정보를 가져오는 등의 작업을 수행할 수 있습니다.
+    let hobbyName = $(this).attr("id");
+    console.log("Clicked hobby: ", hobbyName);
+
+
+    //기록타입과 링크주소 각각의 배열 (n번째 요소끼리 세트)
+    let contentTypes = [];
+    let addresses = [];
+
+
+    const docRef = doc(db, "hobbies", hobbyName);
+    const docSnap = await getDoc(docRef);
+
+    const data = docSnap.data();
+
+    data.contents.forEach((content) => {
+        contentTypes.push(content.contentType);
+        addresses.push(content.address);
+    });
+
+    // 배열에 저장된 contentType과 address를 출력하거나 사용할 수 있습니다.
+    console.log("Content Types:", contentTypes);
+    console.log("Addresses:", addresses);
+
+
+
+    // 여기에 추가 작업을 수행하세요.
+});
 
 
 
