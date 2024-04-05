@@ -23,7 +23,7 @@ const db = getFirestore(app);
 let docs = await getDocs(collection(db, "coll"));
 
 /*회원가입 시작*/
-$('#login_new').click( function () {
+$('#login_new').click(async function () {
     let id = $('#login_id').val();
     let pw = $('#login_pw').val();
     let count = 0;
@@ -43,7 +43,7 @@ $('#login_new').click( function () {
         'login_pw': pw
     };
 
-     addDoc(collection(db, "coll"), doc);
+    await addDoc(collection(db, "coll"), doc);
 
     alert("회원가입 완료");
 
