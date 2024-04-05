@@ -2,9 +2,11 @@
 /*로그인상태 유지 시작 */
 function login_test() {
 
-    if (sessionStorage.getItem("login_o") == 1) {
-      $('.ID_log').hide();
-    }
+  if (sessionStorage.getItem("login_o") == null) {
+    sessionStorage.setItem("login_o", 0);
+  }else if (sessionStorage.getItem("login_o") != 0) {
+    $('.ID_log').hide();
+  }
   }
   login_test();
 /*로그인상태 끝 */
