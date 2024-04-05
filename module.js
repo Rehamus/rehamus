@@ -1,8 +1,6 @@
 // Firebase SDK 라이브러리 가져오기
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, getFirestore, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -57,7 +55,7 @@ $('#login_new').click(async function () {
 
 
 /*로그인 시작*/
-$('#login').click(function () {
+$('#login').click(function () {// 로그인 선택시
     let t_id = $('#login_id_t').val();
     let t_pw = $('#login_pw_t').val();
     if (t_id == "" || t_pw == "") {
@@ -72,10 +70,10 @@ $('#login').click(function () {
             let pw = idd['login_pw'];
             if (t_id == id && t_pw == pw) {
                 console.log("로그인 완료")
-                $('.id_Design').addClass('login');
+                $('.id_Design').addClass('login');// 로그인 화면 치우기
                 $('.id_menu').addClass('login');
                 $('.ID_log *').removeClass('show');
-                sessionStorage.setItem("login_o", 1);
+                sessionStorage.setItem("login_o", t_id);
             } else {
                 count2++;
             }
@@ -90,7 +88,7 @@ $('#login').click(function () {
 
 
 /*비밀번호 찼기 시작*/
-$('#login_f_pw').click(function () {
+$('#login_f_pw').click(function () {// 비밀번호 찼기 선택시
     let t_id = $('#login_id').val();
     docs.forEach((doc) => {
         let idd = doc.data();
@@ -112,10 +110,11 @@ $('#login_f_pw').click(function () {
 $("#saveHobby").click(async function () {
     // 입력된 취미명을 가져옵니다.
     let inputHobby = $('#inputHobby').val();
+    let session = sessionStorage.getItem("login_o");
 
     // await addDoc(collection(db, "hobbies"), { hobbyName: inputHobby });
     const docRef = doc(db, "hobbies", inputHobby); // "hobbies" 컬렉션에 대한 참조 생성
-    await setDoc(docRef, { hobbyName: inputHobby }); // 새로운 문서 추가
+    await setDoc(docRef, { hobbyName: inputHobby,   session : session }); // 새로운 문서 추가
     alert('저장 완료!');
     window.location.reload();
 });
@@ -159,7 +158,8 @@ let docs2 = await getDocs(collection(db, "hobbies"));
     let row = doc.data();
 
     let inputHobby = row['hobbyName'];
-
+    let session = row['session'];
+    if(session == sessionStorage.getItem("login_o")){// 세션(로그인된 ID 와 동일 취미명이 나오게함)
 
     //취미명 버튼 추가
     let temp_html1 = `
@@ -172,7 +172,7 @@ let docs2 = await getDocs(collection(db, "hobbies"));
             <option value="${inputHobby}">${inputHobby}</option>`;
     $('#selectHobby').append(temp_html2);
 
-});
+}});
 
 
 
@@ -208,11 +208,5 @@ $(document).on("click", ".btn-secondary", async function () {
 
     // 여기에 추가 작업을 수행하세요.
 });
-
-
-
-
-
-
 
 
