@@ -179,7 +179,7 @@ docs2.forEach((doc) => {
         // 유트브 추가
         let Youtub = `
         <iframe width="560" height="315" src="${addresses[0]['address']}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
-        $('#Youtube').append(Youtub);
+        $('#Youtube>div').append(Youtub);
 
         //링크 저장 버튼 내에 취미 선택지 추가
         let temp_html2 = `
