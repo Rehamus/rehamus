@@ -74,6 +74,9 @@ $('#login').click(function () {// 로그인 선택시
                 $('.id_menu').addClass('login');
                 $('.ID_log *').removeClass('show');
                 sessionStorage.setItem("login_o", t_id);
+                setTimeout(function() {// 로그인후 1.5초후 세로고침
+                    window.location.reload()
+                  }, 1500);
             } else {
                 count2++;
             }
