@@ -83,6 +83,9 @@ $('#login').click(function () {// 로그인 선택시
         })
         if (count == count2) {
             alert("정보가 틀립니다.");
+            setTimeout(function() {//  1.5초후 세로고침
+            window.location.reload()
+           }, 1500);
         }
     }
 });
