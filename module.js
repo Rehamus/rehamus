@@ -114,7 +114,7 @@ $("#saveHobby").click(async function () {
 
     // await addDoc(collection(db, "hobbies"), { hobbyName: inputHobby });
     const docRef = doc(db, "hobbies", inputHobby); // "hobbies" 컬렉션에 대한 참조 생성
-    await setDoc(docRef, { hobbyName: inputHobby,   session : session }); // 새로운 문서 추가
+    await setDoc(docRef, { hobbyName: inputHobby, session: session }); // 새로운 문서 추가
     alert('저장 완료!');
     window.location.reload();
 });
@@ -153,26 +153,43 @@ $("#saveLink").click(async function () {
 });
 
 
+
+
 let docs2 = await getDocs(collection(db, "hobbies"));
-    docs2.forEach((doc) => {
+let count = 0;
+docs2.forEach((doc) => {
     let row = doc.data();
 
+    let addresses = row['contents'];
     let inputHobby = row['hobbyName'];
     let session = row['session'];
-    if(session == sessionStorage.getItem("login_o")){// 세션(로그인된 ID 와 동일 취미명이 나오게함)
 
-    //취미명 버튼 추가
-    let temp_html1 = `
+
+
+
+    if (session == sessionStorage.getItem("login_o")) {// 세션(로그인된 ID 와 동일 취미명이 나오게함)
+
+        console.log("Addresses:", addresses[0]['address']);
+
+        //취미명 버튼 추가
+        let temp_html1 = `
             <button id="${inputHobby}" type="button" class="btn btn-secondary">${inputHobby}</button>`;
-    $('#category').append(temp_html1);
+        $('#category').append(temp_html1);
 
+        // 유트브 추가
+        let Youtub = `
+        <iframe width="560" height="315" src="${addresses[0]['address']}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
+        $('#Youtube').append(Youtub);
 
-    //링크 저장 버튼 내에 취미 선택지 추가
-    let temp_html2 = `
+        //링크 저장 버튼 내에 취미 선택지 추가
+        let temp_html2 = `
             <option value="${inputHobby}">${inputHobby}</option>`;
-    $('#selectHobby').append(temp_html2);
+        $('#selectHobby').append(temp_html2);
 
-}});
+    }
+
+    count++;
+});
 
 
 
@@ -208,5 +225,11 @@ $(document).on("click", ".btn-secondary", async function () {
 
     // 여기에 추가 작업을 수행하세요.
 });
+
+
+
+
+
+
 
 
