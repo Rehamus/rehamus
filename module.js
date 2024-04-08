@@ -182,7 +182,7 @@ docs2.forEach((doc) => {
           })
           console.log(result);
 
-          var result1 = result.substr(18);
+          var result1 = result.substr(10);
 
           console.log(result1);
 
