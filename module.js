@@ -74,18 +74,15 @@ $('#login').click(function () {// 로그인 선택시
                 $('.id_menu').addClass('login');
                 $('.ID_log *').removeClass('show');
                 sessionStorage.setItem("login_o", t_id);
-                setTimeout(function() {// 로그인후 1.5초후 세로고침
+                setTimeout(function () {// 로그인후 1.5초후 세로고침
                     window.location.reload()
-                  }, 1500);
+                }, 1500);
             } else {
                 count2++;
             }
         })
         if (count == count2) {
             alert("정보가 틀립니다.");
-            setTimeout(function() {//  1.5초후 세로고침
-            window.location.reload()
-           }, 1500);
         }
     }
 });
@@ -166,16 +163,28 @@ let count = 0;
 docs2.forEach((doc) => {
     let row = doc.data();
 
-    let addresses = row['contents'];
+    let addresses = row['contents'];//${addresses[0]['address']}
     let inputHobby = row['hobbyName'];
     let session = row['session'];
-
-
-
+    let test1 = row['test1'];
 
     if (session == sessionStorage.getItem("login_o")) {// 세션(로그인된 ID 와 동일 취미명이 나오게함)
 
-        console.log("Addresses:", addresses[0]['address']);
+
+        console.log(test1);
+
+        var domain = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
+        
+        const arr = []; // https://m.blog.naver.com/j_wish_/221609954982 문제해결단서
+    
+          var result = test1.replace(domain, function (n) {
+            arr.push(n)
+          })
+          console.log(result);
+
+          var result1 = result.substr(18);
+
+          console.log(result1);
 
         //취미명 버튼 추가
         let temp_html1 = `
@@ -184,7 +193,7 @@ docs2.forEach((doc) => {
 
         // 유트브 추가
         let Youtub = `
-        <iframe width="560" height="315" src="${addresses[0]['address']}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
+        <iframe width="560" height="315" src="https://youtube.com/embed/${result1}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
         $('#Youtube>div').append(Youtub);
 
         //링크 저장 버튼 내에 취미 선택지 추가
