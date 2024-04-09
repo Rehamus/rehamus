@@ -163,38 +163,18 @@ let count = 0;
 docs2.forEach((doc) => {
     let row = doc.data();
 
-    let addresses = row['contents'];//${addresses[0]['address']}
     let inputHobby = row['hobbyName'];
     let session = row['session'];
     let test1 = row['test1'];
+    let test2 = test1 + "";
 
     if (session == sessionStorage.getItem("login_o")) {// 세션(로그인된 ID 와 동일 취미명이 나오게함)
-
-
-        console.log(test1);
-
-        var domain = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
-        
-        const arr = []; // https://m.blog.naver.com/j_wish_/221609954982 문제해결단서
-    
-          var result = test1.replace(domain, function (n) {
-            arr.push(n)
-          })
-          console.log(result);
-
-          var result1 = result.substr(10);
-
-          console.log(result1);
 
         //취미명 버튼 추가
         let temp_html1 = `
             <button id="${inputHobby}" type="button" class="btn btn-secondary">${inputHobby}</button>`;
         $('#category').append(temp_html1);
 
-        // 유트브 추가
-        let Youtub = `
-        <iframe width="560" height="315" src="https://youtube.com/embed/${result1}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
-        $('#Youtube>div').append(Youtub);
 
         //링크 저장 버튼 내에 취미 선택지 추가
         let temp_html2 = `
@@ -214,13 +194,17 @@ $(document).on("click", ".btn-secondary", async function () {
 
     // 예를 들어, 클릭된 취미에 대한 추가 정보를 가져오는 등의 작업을 수행할 수 있습니다.
     let hobbyName = $(this).attr("id");
-    console.log("Clicked hobby: ", hobbyName);
 
+    let docs2 = await getDocs(collection(db, "hobbies"));
+
+    // console.log("Clicked hobby: ", hobbyName);
+
+    $('#hobbyTitle').empty(); // 기존 제목 초기화
+    $('#hobbyTitle').append(hobbyName); // 제목 삽입
 
     //기록타입과 링크주소 각각의 배열 (n번째 요소끼리 세트)
     let contentTypes = [];
     let addresses = [];
-
 
     const docRef = doc(db, "hobbies", hobbyName);
     const docSnap = await getDoc(docRef);
@@ -236,10 +220,73 @@ $(document).on("click", ".btn-secondary", async function () {
     console.log("Content Types:", contentTypes);
     console.log("Addresses:", addresses);
 
-
-
     // 여기에 추가 작업을 수행하세요.
+    // 배열의 문자열을 통해 index 번호 뽑기
+    const youtubeIndex = contentTypes.indexOf('youtube');
+    const namuwikiIndex = contentTypes.indexOf('namu');
+    const photoIndex = contentTypes.indexOf('photo');
+
+    const indexesOfValue = (contentTypes, value) => {
+        return contentTypes.reduce((acc, elem, index)=> {
+            if(elem === value){
+                acc.push(index);
+            }
+            return acc;
+        }, []);
+    };
+    const photoIndexOfValue = indexesOfValue(contentTypes, 'photo');
+    const youtubeIndexOfValue = indexesOfValue(contentTypes, 'youtube');
+    const namuwikiIndexOfValue = indexesOfValue(contentTypes, 'namu');
+
+    // 데이터 충돌 방지
+    $('#youtubeView').empty();
+    $('#namuwikiView').empty();
+    $('#photoView').empty();
+
+    let youtube_temp_html = '';
+    let namuwiki_temp_html = '';
+    let photo_temp_html = '';
+    if(youtubeIndex == -1){
+        youtube_temp_html = `<div>##유트브 링크 없음.##</div>`;
+    } else {
+        youtubeIndexOfValue.forEach(function(youtube){
+            youtube_temp_html += `<div><a href="${addresses[youtube]}">${addresses[youtube]}</a></div>`;
+
+        // 유트브 내보내기
+        var str = addresses[youtube];
+        var address = str.split('watch?v=');
+
+        console.log()
+        // 유트브 추가
+        let Youtub_new = `
+            <iframe width="560" height="315" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
+            $('#youtubeView').append(Youtub_new);
+
+        })
+    }
+    if(namuwikiIndex == -1){
+        namuwiki_temp_html = `<div>##나무위키 링크 없음.##</div>`;
+    } else {
+        namuwikiIndexOfValue.forEach(function(namu){
+            namuwiki_temp_html += `<div><a href="${addresses[namu]}">${addresses[namu]}</a></div>`;
+        })
+    }
+    if(photoIndex == -1){
+        photo_temp_html = `<div>##사진 없음.##</div>`;
+    } else {
+        photoIndexOfValue.forEach(function(photo){
+            photo_temp_html += `<div><img src="${addresses[photo]}"></img></div>`;
+        })
+    }
+    $('#youtubeView').append(youtube_temp_html);
+    $('#namuwikiView').append(namuwiki_temp_html);
+    $('#photoView').append(photo_temp_html);
 });
+
+$('#contents_view > li').click(function () {
+    $(this).children('div').toggle();
+})
+
 
 
 
