@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,35 +11,43 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- Bootstrap JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-    <!-- Login -->
+  <!-- Login -->
   <section class="ID_log">
     <div class="id_Design">
     </div>
     <div class="id_menu">
-      <div class="title">
-        <p>로고 및 이름</p>
+      <div class="ID_title">
+        <p style="font-size: 6rem; font-weight:bolder;" class="lobster-regular">Collector</p>
+        <p style="font-size: 2rem;">Login</p>
       </div>
       <div class="log_id">
-        <input type="text" placeholder="로그인" id="login_id_t">
+        <p style="font-weight:bolder;color :white;">ID</p>
+        <input type="text" placeholder="아이디" id="login_id_t">
       </div>
       <div class="log_pw">
+        <p style="font-weight:bolder; color :white;">PW</p>
         <input type="text" placeholder="비밀번호" id="login_pw_t">
       </div>
       <div class="log_test">
-        <button type="button" id="login">로그인</button>
+        <button id="login" type="button" class="btn btn-danger">로그인</button>
       </div>
       <div class="log_find">
-        <button id="F_new_Id">회원가입</button>
+        <button id="F_new_Id">회원가입 /</button>
         <button id="F_fw">비밀번호 찼기</button>
       </div>
     </div>
     <div class="id_new">
       <div id="" class="log_new">
+        <p style="font-size: 2rem;"id="login_new_L">회원가입</p>
+        <p style="font-size: 2rem;"id="login_f_pw_L">비밀번호 찼기</p>
         <input type="text" placeholder="로그인" id="login_id"><br>
         <input type="text" placeholder="비밀번호" id="login_pw"><br>
         <button type="button" id="login_new" class="">가입</button>
@@ -48,7 +56,6 @@
       </div>
     </div>
   </section>
-
   <!-- header -->
   <header
     class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -65,7 +72,7 @@
     </ul>
 
     <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-outline-primary me-2" id="logout">개인설정</button>
+      <button type="button" class="btn btn-outline-primary me-2" id="logout">로그아웃</button>
     </div>
   </header>
 
