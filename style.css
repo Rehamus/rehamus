@@ -1,3 +1,11 @@
+/*폰트*/
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /*노멀 라이즈 */
 body,ul,li{
   margin: 0;
@@ -14,7 +22,6 @@ body{
 /*커스텀*/
 
 /* 로그인 */
-
 .ID_log > *{
   transition: all .8s;
   position: fixed;
@@ -23,21 +30,27 @@ body{
   right: 0;
   height: 100%;
   width: 100%;
-  background-color: gold;
+  background-color:#585858;
 }
 .id_menu{
   top: 0;
-  margin-left:10% ;
+  padding: 15px;
+  left : 50%;
+  right: auto;
   height: 100%;
   width: 30%;
-  background-color: red;
+  transform: translateX(-50%);
+  background-color: #BCBCBC;
+}
+.id_menu.show{
+  left : 30%;
 }
 .id_menu > *{
   top: 10%;
   position: relative;
   height: 10%;
   width: 100%;
-  border: 3px solid blue ;
+ /* border: 3px solid blue ;*/
 }
 .id_new{
   visibility: hidden;
@@ -46,16 +59,34 @@ body{
   top: 10%;
   height: 0%;
   width: 40%;
-  border: 3px solid blue ;
+ /* border: 3px solid blue ;*/
 }
 .id_new.show{
   visibility: visible;
   height: 80%;
 }
+#login_pw_t , #login_id_t{
+  border:none;
+  width: 60%;
+}
 
+.log_new{
+  border-radius: 20% 20% 0% 0%; ;
+  padding: 200px;
+  padding-top:250px ;
+  background-color: #BCBCBC;
+  box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.384), -3px 6px 7px rgba(0, 0, 0, 0.384);
+}
+
+.log_new > *{
+  margin: 10px;
+}
 /*로그인 완료*/
 
 /*로그인중*/
+.id_menu{
+  box-shadow: 0px 10px 8px black;
+}
 .id_menu.login{
   visibility: hidden;
   height: 0%;
@@ -73,7 +104,14 @@ body{
 
 
 /*회원가입*/
-
+.ID_title{
+  color: white;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .id_new > *{
   position: absolute;
   top : 10%;
@@ -82,16 +120,29 @@ body{
 }
 .id_new div{
   visibility: hidden;
-  border: 3px solid blue ;
 }
 .id_new.show  div{
   visibility: visible;
-  border: 3px solid red ;
 }
 .hidden{
+  display: none;
   visibility: hidden;
 }
-
+.log_test{
+  text-align: right;
+  justify-content: bottom;
+}
+.log_test > button{
+  margin-top: 20px;
+  width: 45%;
+}
+.log_find{
+  text-align: right;
+}
+.log_find > button{
+  border:none;
+  background:none;
+}
 /*회원가입 완료*/
 
 
