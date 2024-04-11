@@ -1,4 +1,5 @@
 /*폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@100..900&display=swap');
 .lobster-regular {
   font-family: "Lobster", sans-serif;
   font-weight: 400;
@@ -16,21 +17,33 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
-body{
-  background-color: gray;
-}
+
 /*커스텀*/
+/*색배정*/
+
+:root{
+  --web_b_color :#FFF6E9;
+  --web_bd1_color :#40A2E3;
+  --web_bd2_color :#BBE2EC;
+  --web_bd3_color :#0D9276;
+}
+
+body{
+  background-color:var(--web_bd1_color) !important;
+  
+}
 
 /* 로그인 */
 .ID_log > *{
   transition: all .8s;
   position: fixed;
+  z-index: 1000;
 }
 .id_Design{
   right: 0;
   height: 100%;
   width: 100%;
-  background-color:#585858;
+  background-color:var(--web_b_color);
 }
 .id_menu{
   top: 0;
@@ -40,7 +53,7 @@ body{
   height: 100%;
   width: 30%;
   transform: translateX(-50%);
-  background-color: #BCBCBC;
+  background-color:var(--web_bd1_color);
 }
 .id_menu.show{
   left : 30%;
@@ -68,6 +81,10 @@ body{
 #login_pw_t , #login_id_t{
   border:none;
   width: 60%;
+  background-color:var(--web_b_color);
+}
+#F_new_Id,#F_fw{
+  color:white;
 }
 
 .log_new{
@@ -75,7 +92,7 @@ body{
   padding: 200px;
   padding-top:250px ;
   background-color: #BCBCBC;
-  box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.384), -3px 6px 7px rgba(0, 0, 0, 0.384);
+  box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.384), -3px 6px 7px rgba(0, 0, 0, 0.384),3px 0px 7px rgba(0, 0, 0, 0.384), -3px 0px 7px rgba(0, 0, 0, 0.384);
 }
 
 .log_new > *{
@@ -85,6 +102,7 @@ body{
 
 /*로그인중*/
 .id_menu{
+  min-width: 500px;
   box-shadow: 0px 10px 8px black;
 }
 .id_menu.login{
@@ -106,11 +124,23 @@ body{
 /*회원가입*/
 .ID_title{
   color: white;
-  height: 250px;
+  height: 320px;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: default;
+}
+.ID_title > p:nth-child(1){
+  position: absolute;
+  top: -15px;
+}
+.ID_title > p:nth-child(2){
+  height: 250px;
+  position: absolute;
+  top: 270px;
+  right: 400px;
 }
 .id_new > *{
   position: absolute;
@@ -125,6 +155,7 @@ body{
   visibility: visible;
 }
 .hidden{
+  transition: all 3s;
   display: none;
   visibility: hidden;
 }
@@ -145,48 +176,89 @@ body{
 }
 /*회원가입 완료*/
 
+.img_box{
+  height: 300px;
+  width: 300px;
+  display: inline-block;
+  box-shadow:0 1px 2px rgba(0,0,0,0.3),
+    0 1px 3px rgba(0,0,0,0.15);
+    transition: box-shadow .3s;
 
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@100..900&display=swap'); 
-        
+    margin: 20px;
+}.img_box:hover{
+  box-shadow:0 10px 10px rgba(0,0,0,0.3),
+    0 14px 28px rgba(0,0,0,0.3);
+
+}
+
+.img_box > *{
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.img_box:hover > *{
+  object-fit:contain;
+  margin-top: -20%;
+  margin-left: -10%;
+  width: 130%;
+  height: 130%;
+  transition: all .6s;
+  box-shadow:0 10px 10px rgba(0,0,0,0.3),
+  0 14px 28px rgba(0,0,0,0.3);
+  z-index: 20;
+}
+
+
 * {
     font-family: "Gowun Dodum", serif;
 }
 
-.title {
-    height: 250px;
-    background-color: rgb(0, 37, 73);
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.main {
+    width: 100%;
+    height: auto;
 }
 
 /*  left section */
 #box1 {
     float: left;
-    width: 200%;
-    background-color: #f1f1f5;
+    width: 85%;
     color: rgb(10, 10, 10);
+    background-color: rgb(250, 246, 246);
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    text-align: left;
+}
+
+.input-group {
+    width: 100%;
+    margin: 0 0 30px 0;
 }
 
 /*  right section */
 #box2 {
-    display: inline-block;
-    width: 50%;
-    background-color: #a09f9f;
-    margin-left: 10px;
-    color: white;
+    float: right;
+    width: 15%;
+    background-color: #ffffff;
+    color: black;
     font-size: 20px;
-}
 
+    text-align: center;
+    display: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 /* 새로운 취미명 입력 + 링크추가 입력 modal창 */
 .modal-content {
     width: 500px;
     margin: 0 auto 20px auto;
-    color : black;
+    color: black;
 
     /* border: 3px solid rgb(116, 15, 15); */
     background-color: rgb(195, 240, 255);
@@ -197,7 +269,7 @@ body{
 
 /* category table */
 .table>button {
-    width: 218px;
+    width: 100%;
     margin-top: 5px;
 
     display: flex;
@@ -206,4 +278,29 @@ body{
     justify-content: center;
 
 }
-/*세팅*/
+.fs-4{
+  transform: scale(2) translateX(20%) translateY(20%);
+}
+#logout{
+  display: block;
+  padding: 5px;
+  border-radius: 8%;
+  border : 4px solid var(--web_b_color) ;
+  color: white;
+  background-color: var(--web_bd1_color);
+  transform: translateX(-20%) translateY(15%);
+  cursor:pointer;
+}
+#logout:hover{
+  background-color: #0f6aa7;
+}
+.T_menu{
+  background-color: var(--web_bd1_color);
+}
+#category > button{
+  color: black;
+  background-color: var(--web_b_color);
+}
+.container{
+  background-color: white;
+}
