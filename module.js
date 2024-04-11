@@ -185,6 +185,103 @@ docs2.forEach((doc) => {
 
     count++;
 });
+        // carousel 취미명 생성 
+        let docs3 = await getDocs(collection(db, "hobbies"));
+        // 새 취미 목록 배열 생성
+        let inputHobbyArray = [];
+
+        // 새 취미이름 테이터 순회 배열 및 값 추가
+        docs3.forEach((doc) => {
+            let row = doc.data();
+            let inputHobby = row['hobbyName'];
+            inputHobbyArray.push(inputHobby);
+        });
+
+
+        let htmlTemplates = [];
+        // 취미가 0 일 경우 안내문자 
+        let requireHobby = "취미를 추가해주세요 :)";
+
+        if (inputHobbyArray.length === 0) {
+            // 새 취미명이 하나도 없을 경우 안내 문자 생성
+            let html = `
+        <div id="carousel1" class="carousel-caption text-start">
+            <h1>${requireHobby}</h1>
+            <p><a class="btn btn-lg btn-primary" href="#">See more</a></p>
+        </div>`;
+            htmlTemplates.push(html);
+        } else { // 새 취미명이 하나라도 있을 경우 취미명 생성
+            for (let i = 0; i < inputHobbyArray.length; i++) {
+                let inputValueAtIndex = inputHobbyArray[i];
+                // console.log("취미명 index번호 " + i + ":", inputValueAtIndex); // 취미명 인덱스번호 검색
+
+                let html = `
+        <div id="carousel" class="carousel-caption text-start">
+            <h1>${inputValueAtIndex}</h1>
+            <p><a class="btn btn-lg btn-primary" href="#">See more</a></p>
+        </div>`;
+                htmlTemplates.push(html);
+            }
+        }
+        // 취미명 추가 등록 시 추가 생성 
+        for (let i = 0; i < htmlTemplates.length; i++) {
+            $(`#carousel${i + 1}`).html(htmlTemplates[i]);
+        }
+
+
+
+
+        // carousel > see more 
+        $(document).on("click", ".carousel-caption .btn-primary", async function () { // see more 클릭시
+            let hobbyName = $(this).closest(".carousel-caption").find("h1").text().trim(); // 취미명과 일치하는 요소 찾기
+
+            const docRef = doc(db, "hobbies", hobbyName);
+            const docSnap = await getDoc(docRef); // 취미명 불러오기
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+
+                $('.hobbyTitle').empty(); // 기존에 취미명 지우기
+                $('.hobbyTitle').append(data.hobbyName); // 취미명 다시 업뎃
+
+                $('#youtubeView').empty(); // 기존에 유투브 내용지우기
+                $('#namuwikiView').empty(); // 기존에 나무위키 내용지우기
+                $('#photoView').empty(); // 기존의 사진 내용 지우기
+
+                // hobbise에서 내용 찾아 불러오기
+                data.contents.forEach(content => {
+                    if (content.contentType === 'youtube') {
+                        $('#youtubeView').append(`<div><a href="${content.address}">${content.address}</a></div>`);
+                        var youtubeAddress = content.address;
+                        var canView = youtubeAddress.split('=');
+                        console.log("태스트" + canView[1]);
+                        let Youtub_new = `
+                         <iframe width="560" height="315" src="https://youtube.com/embed/${canView[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
+                        $('#youtubeView').append(Youtub_new);
+                    } else if (content.contentType === 'namu') {
+                        $('#namuwikiView').append(`<div><a href="${content.address}">${content.address}</a></div>`);
+                    } else if (content.contentType === 'photo') {
+                        $('#photoView').append(`<div><img src="${content.address}"></div>`);
+                    }
+                });
+            }
+        });
+
+
+
+
+        // 취미명 검색
+        $(".input-group button").on("click", function () {// 검색창에 취미명 입력 후 검색버튼 클릭
+            let searchValue = $(".input-group input").val().trim(); // 입력된 취미명 값 (앞뒤 공백제거)
+            let hobbyButton = $(`#${searchValue}`); // id값 불러오기
+
+            if (hobbyButton.length > 0) {
+                hobbyButton.trigger("click"); // 저장된 내용 불러오기
+            } else { // 잘못된 취미명 입력 시 경고창
+                alert("잘못 입력하셨습니다. 저장하신 취미명을 입력해주세요. ");
+            }
+        });
+
 
 
 
@@ -254,12 +351,11 @@ $(document).on("click", ".btn-secondary", async function () {
 
         // 유트브 내보내기
         var str = addresses[youtube];
-        var address = str.split('watch?v=');
+        var address = str.split('v=');
 
-        console.log()
         // 유트브 추가
         let Youtub_new = `
-            <iframe width="560" height="315" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
+            <iframe width="600" height="320" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
             $('#youtubeView').append(Youtub_new);
 
         })
@@ -275,7 +371,7 @@ $(document).on("click", ".btn-secondary", async function () {
         photo_temp_html = `<div>##사진 없음.##</div>`;
     } else {
         photoIndexOfValue.forEach(function(photo){
-            photo_temp_html += `<div><img src="${addresses[photo]}"></img></div>`;
+            photo_temp_html += `<div class="img_box"><img src="${addresses[photo]}"></img></div>`;
         })
     }
     $('#youtubeView').append(youtube_temp_html);
