@@ -130,6 +130,7 @@ $("#saveLink").click(async function () {
     let selectHobby = $('#selectHobby').val();
     let contentType = $('#contentType').val();
     let address = $('#address').val();
+    let C_name = $('#C_name').val();
 
     try {
         // 선택한 취미가 이미 존재하는 경우 해당 문서를 업데이트합니다.
@@ -144,7 +145,8 @@ $("#saveLink").click(async function () {
         await setDoc(docRef, {
             contents: arrayUnion({
                 contentType: contentType,
-                address: address
+                address: address,
+                C_name : C_name
             })
         }, { merge: true });
         alert('저장 완료!');
@@ -180,6 +182,7 @@ docs2.forEach((doc) => {
         let temp_html2 = `
             <option value="${inputHobby}">${inputHobby}</option>`;
         $('#selectHobby').append(temp_html2);
+        $('#deleteHobby').append(temp_html2);
 
     }
 
@@ -241,6 +244,8 @@ docs2.forEach((doc) => {
             if (docSnap.exists()) {
                 const data = docSnap.data();
 
+
+
                 $('.hobbyTitle').empty(); // 기존에 취미명 지우기
                 $('.hobbyTitle').append(data.hobbyName); // 취미명 다시 업뎃
 
@@ -254,7 +259,6 @@ docs2.forEach((doc) => {
                         $('#youtubeView').append(`<div><a href="${content.address}">${content.address}</a></div>`);
                         var youtubeAddress = content.address;
                         var canView = youtubeAddress.split('=');
-                        console.log("태스트" + canView[1]);
                         let Youtub_new = `
                          <iframe width="560" height="315" src="https://youtube.com/embed/${canView[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
                         $('#youtubeView').append(Youtub_new);
@@ -288,7 +292,7 @@ docs2.forEach((doc) => {
 //!!!준빈님이 완성하실 부분!!! 취미버튼 클릭 시 - 클릭 이벤트 핸들러 정의 (버튼이 생성된 이후에 정의되어야 함)
 $(document).on("click", ".btn-secondary", async function () {
     // 클릭된 버튼에 대한 동작 구현
-
+    $('.hobbyTitle').text($(this).attr("id"));
     // 예를 들어, 클릭된 취미에 대한 추가 정보를 가져오는 등의 작업을 수행할 수 있습니다.
     let hobbyName = $(this).attr("id");
 
@@ -316,6 +320,7 @@ $(document).on("click", ".btn-secondary", async function () {
     // 배열에 저장된 contentType과 address를 출력하거나 사용할 수 있습니다.
     console.log("Content Types:", contentTypes);
     console.log("Addresses:", addresses);
+    console.log("hobbyName:", hobbyName);
 
     // 여기에 추가 작업을 수행하세요.
     // 배열의 문자열을 통해 index 번호 뽑기
@@ -355,7 +360,7 @@ $(document).on("click", ".btn-secondary", async function () {
 
         // 유트브 추가
         let Youtub_new = `
-            <iframe width="600" height="320" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
+        <div> <iframe width="855" height="480" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;</div>`
             $('#youtubeView').append(Youtub_new);
 
         })
@@ -371,17 +376,13 @@ $(document).on("click", ".btn-secondary", async function () {
         photo_temp_html = `<div>##사진 없음.##</div>`;
     } else {
         photoIndexOfValue.forEach(function(photo){
-            photo_temp_html += `<div class="img_box"><img src="${addresses[photo]}"></img></div>`;
+            photo_temp_html += `<div class="img_box"><img src="${addresses[photo]}"></img><a href="${addresses[photo]}"></a></div>`;
         })
     }
     $('#youtubeView').append(youtube_temp_html);
     $('#namuwikiView').append(namuwiki_temp_html);
     $('#photoView').append(photo_temp_html);
 });
-
-$('#contents_view > li').click(function () {
-    $(this).children('div').toggle();
-})
 
 
 
