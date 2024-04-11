@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>콜렉터아이디</title>
+  <title>Collector</title>
   <link rel="stylesheet" href="./style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Bootstrap CSS -->
@@ -41,17 +41,17 @@
       </div>
       <div class="log_find">
         <button id="F_new_Id">회원가입 /</button>
-        <button id="F_fw">비밀번호 찼기</button>
+        <button id="F_fw">비밀번호 찾기</button>
       </div>
     </div>
     <div class="id_new">
       <div id="" class="log_new">
         <p style="font-size: 2rem;" id="login_new_L">회원가입</p>
-        <p style="font-size: 2rem;" id="login_f_pw_L">비밀번호 찼기</p>
+        <p style="font-size: 2rem;" id="login_f_pw_L">비밀번호 찾기</p>
         <input type="text" placeholder="로그인" id="login_id"><br>
         <input type="text" placeholder="비밀번호" id="login_pw"><br>
         <button type="button" id="login_new" class="">가입</button>
-        <button type="button" id="login_f_pw" class="">찼기</button>
+        <button type="button" id="login_f_pw" class="">찾기</button>
         <button class="id_new_C">창닫기</button>
       </div>
     </div>
@@ -231,6 +231,11 @@
                       <label for="floatingSelect">기록타입</label>
                     </div>
 
+
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="C_name" placeholder="링크">
+                      <label for="floatingInput">저장 할 이름</label>
+                    </div>
                     <div class="form-floating mb-3">
                       <input type="email" class="form-control" id="address" placeholder="링크">
                       <label for="floatingInput">링크 주소 입력</label>
@@ -253,9 +258,71 @@
             <div id="category" class="table">
             </div>
 
+            <!-- 링크삭제 btn -->
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">
+              삭제
+            </button>
+
+            <!-- 링크삭제 Modal창 -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+
+                  <div class="modal-body">
+                    <div class="form-floating mb-3">
+                      <select class="form-select" id="selectHobbyX" aria-label="Floating label select example">
+                        <option selected>-- 선택 --</option>
+                        <!-- <option value="photo">사진</option>
+                                                    <option value="youtube">유튜브 영상</option>
+                                                    <option value="namu">나무위키</option> -->
+                      </select>
+                      <label for="floatingSelect">취미</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <select class="form-select" id="contentType" aria-label="Floating label select example">
+                        <option selected>-- 선택 --</option>
+                        <option value="photo">사진</option>
+                        <option value="youtube">유튜브 영상</option>
+                        <option value="namu">나무위키</option>
+                      </select>
+                      <label for="floatingSelect">기록타입</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                      <select class="form-select" id="deleteAddress" aria-label="Floating label select example">
+                        <option selected>-- 선택 --</option>
+                        <!-- <option value="photo">사진</option>
+                                                      <option value="youtube">유튜브 영상</option>
+                                                      <option value="namu">나무위키</option> -->
+                      </select>
+                      <label for="floatingSelect">삭제할 항목</label>
+                    </div>
+
+                  </div>
+
+                  <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button id="deleteLink" type="button" class="btn btn-danger">삭제하기</button>
+                  </div>
+
+              </div>
+            </div>
           </div>
+
+
         </div>
       </div>
+    </div>
 </body>
 <script src="./script.js"></script>
 <script type="module" src="./module.js"></script>
