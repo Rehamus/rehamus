@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,23 +137,23 @@
       <div class="main">
         <!-- left section -->
         <div id="box1">
-          <div class="my-3 py-3">
+          <div class="">
             <h1 class="hobbyTitle"></h1>
             <footer class="pt-5 my-5 text-body-secondary border-top"></footer>
             <ul id="contents_view">
-              <li id="Youtube">Youtube <button class="openclose" id="youtubeOpencloseBtn">🔻</button>
+              <li id="Youtube"> <button class="openclose" id="youtubeOpencloseBtn">Youtube 🔻</button>
                 <div id="youtubeView">
 
                 </div>
                 <footer class="pt-5 my-5 text-body-secondary border-top"></footer>
               </li>
-              <li id="namuwitki">나무위키 <button class="openclose" id="namuOpencloseBtn">🔻</button>
+              <li id="namuwitki"> <button class="openclose" id="namuOpencloseBtn">나무위키 🔻</button>
                 <div id="namuwikiView">
 
                 </div>
                 <footer class="pt-5 my-5 text-body-secondary border-top"></footer>
               </li>
-              <li id="Sagin">사진 <button class="openclose" id="photoOpencloseBtn">🔻</button>
+              <li id="Sagin"> <button class="openclose" id="photoOpencloseBtn">사진🔻</button>
                 <div id="photoView">
                 </div>
                 <footer class="pt-5 my-5 text-body-secondary border-top"></footer>
@@ -233,9 +235,10 @@
 
 
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="C_name" placeholder="링크">
-                      <label for="floatingInput">저장 할 이름</label>
+                      <input type="email" class="form-control" id="linkName" placeholder="링크이름">
+                      <label for="floatingInput">저장할 이름</label>
                     </div>
+
                     <div class="form-floating mb-3">
                       <input type="email" class="form-control" id="address" placeholder="링크">
                       <label for="floatingInput">링크 주소 입력</label>
@@ -277,7 +280,7 @@
 
                   <div class="modal-body">
                     <div class="form-floating mb-3">
-                      <select class="form-select" id="selectHobbyX" aria-label="Floating label select example">
+                      <select class="form-select" id="deleteHobby" aria-label="Floating label select example">
                         <option selected>-- 선택 --</option>
                         <!-- <option value="photo">사진</option>
                                                     <option value="youtube">유튜브 영상</option>
@@ -300,9 +303,7 @@
                     <div class="form-floating mb-3">
                       <select class="form-select" id="deleteAddress" aria-label="Floating label select example">
                         <option selected>-- 선택 --</option>
-                        <!-- <option value="photo">사진</option>
-                                                      <option value="youtube">유튜브 영상</option>
-                                                      <option value="namu">나무위키</option> -->
+
                       </select>
                       <label for="floatingSelect">삭제할 항목</label>
                     </div>
