@@ -1,3 +1,5 @@
+//module.js
+
 // Firebase SDK 라이브러리 가져오기
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, getFirestore, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
@@ -13,6 +15,8 @@ const firebaseConfig = {
     appId: "1:199277879635:web:901dc64f8d3e8f28a901a6",
     measurementId: "G-M1VXRZKM0V"
 };
+
+
 
 // Firebase 인스턴스 초기화
 const app = initializeApp(firebaseConfig);
@@ -130,7 +134,8 @@ $("#saveLink").click(async function () {
     let selectHobby = $('#selectHobby').val();
     let contentType = $('#contentType').val();
     let address = $('#address').val();
-    let C_name = $('#C_name').val();
+    let linkName = $('#linkName').val(); // linkName 추가
+
 
     try {
         // 선택한 취미가 이미 존재하는 경우 해당 문서를 업데이트합니다.
@@ -144,11 +149,14 @@ $("#saveLink").click(async function () {
         // }, { merge: true });
         await setDoc(docRef, {
             contents: arrayUnion({
+                linkName : linkName,
                 contentType: contentType,
-                address: address,
-                C_name : C_name
+                address: address
             })
         }, { merge: true });
+
+
+
         alert('저장 완료!');
         window.location.reload();
     } catch (error) {
@@ -160,7 +168,13 @@ $("#saveLink").click(async function () {
 
 
 
+
+
+
 let docs2 = await getDocs(collection(db, "hobbies"));
+
+
+
 let count = 0;
 docs2.forEach((doc) => {
     let row = doc.data();
@@ -183,6 +197,8 @@ docs2.forEach((doc) => {
             <option value="${inputHobby}">${inputHobby}</option>`;
         $('#selectHobby').append(temp_html2);
         $('#deleteHobby').append(temp_html2);
+
+
 
     }
 
@@ -263,7 +279,7 @@ docs2.forEach((doc) => {
                          <iframe width="560" height="315" src="https://youtube.com/embed/${canView[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;`
                         $('#youtubeView').append(Youtub_new);
                     } else if (content.contentType === 'namu') {
-                        $('#namuwikiView').append(`<div><a href="${content.address}">${content.address}</a></div>`);
+                        $('#namuwikiView').append(`<div class="namu_box"><a href="${content.address}">${content.address}</a></div>`);
                     } else if (content.contentType === 'photo') {
                         $('#photoView').append(`<div><img src="${content.address}"></div>`);
                     }
@@ -306,6 +322,7 @@ $(document).on("click", ".btn-secondary", async function () {
     //기록타입과 링크주소 각각의 배열 (n번째 요소끼리 세트)
     let contentTypes = [];
     let addresses = [];
+    let linkNames = [];
 
     const docRef = doc(db, "hobbies", hobbyName);
     const docSnap = await getDoc(docRef);
@@ -313,14 +330,17 @@ $(document).on("click", ".btn-secondary", async function () {
     const data = docSnap.data();
 
     data.contents.forEach((content) => {
+        linkNames.push(content.linkName);
         contentTypes.push(content.contentType);
         addresses.push(content.address);
     });
 
     // 배열에 저장된 contentType과 address를 출력하거나 사용할 수 있습니다.
+    console.log("hobbyName:", hobbyName);
+    console.log("linkNames", linkNames);
     console.log("Content Types:", contentTypes);
     console.log("Addresses:", addresses);
-    console.log("hobbyName:", hobbyName);
+    
 
     // 여기에 추가 작업을 수행하세요.
     // 배열의 문자열을 통해 index 번호 뽑기
@@ -348,40 +368,46 @@ $(document).on("click", ".btn-secondary", async function () {
     let youtube_temp_html = '';
     let namuwiki_temp_html = '';
     let photo_temp_html = '';
+
+
     if(youtubeIndex == -1){
-        youtube_temp_html = `<div>##유트브 링크 없음.##</div>`;
+        youtube_temp_html = `<div>##유튜브 링크 없음.##</div>`;
     } else {
         youtubeIndexOfValue.forEach(function(youtube){
             youtube_temp_html += `<div><a href="${addresses[youtube]}">${addresses[youtube]}</a></div>`;
 
-        // 유트브 내보내기
+        // 유튜브 내보내기
         var str = addresses[youtube];
         var address = str.split('v=');
 
-        // 유트브 추가
+        // 유튜브 추가
         let Youtub_new = `
+        <p><br /><"${linkNames[1]}"><br /></p>
         <div> <iframe width="855" height="480" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;</div>`
-            $('#youtubeView').append(Youtub_new);
-
+        $('#youtubeView').append(Youtub_new);
         })
     }
     if(namuwikiIndex == -1){
         namuwiki_temp_html = `<div>##나무위키 링크 없음.##</div>`;
     } else {
         namuwikiIndexOfValue.forEach(function(namu){
-            namuwiki_temp_html += `<div><a href="${addresses[namu]}">${addresses[namu]}</a></div>`;
+            namuwiki_temp_html += `
+            <div class="namu_box"><a href="${addresses[namu]}">${linkNames[namu]}</a></div>`;
         })
     }
     if(photoIndex == -1){
         photo_temp_html = `<div>##사진 없음.##</div>`;
     } else {
         photoIndexOfValue.forEach(function(photo){
-            photo_temp_html += `<div class="img_box"><img src="${addresses[photo]}"></img><a href="${addresses[photo]}"></a></div>`;
+            photo_temp_html += `
+            <div class="inline"><div class="img_box"><img src="${addresses[photo]}"></img><a href="${addresses[photo]}"></a></div><p>"<${linkNames[photo]}>"</p></div>`;
         })
     }
     $('#youtubeView').append(youtube_temp_html);
     $('#namuwikiView').append(namuwiki_temp_html);
     $('#photoView').append(photo_temp_html);
+
+
 });
 
 
