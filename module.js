@@ -191,7 +191,6 @@ docs2.forEach((doc) => {
             <button id="${inputHobby}" type="button" class="btn btn-secondary">${inputHobby}</button>`;
         $('#category').append(temp_html1);
 
-
         //링크 저장 버튼 내에 취미 선택지 추가
         let temp_html2 = `
             <option value="${inputHobby}">${inputHobby}</option>`;
@@ -204,7 +203,7 @@ docs2.forEach((doc) => {
 
     count++;
 });
-        // carousel 취미명 생성 
+        // carousel 취미명 생성
         let docs3 = await getDocs(collection(db, "hobbies"));
         // 새 취미 목록 배열 생성
         let inputHobbyArray = [];
@@ -250,7 +249,7 @@ docs2.forEach((doc) => {
 
 
 
-        // carousel > see more 
+        // carousel > see more
         $(document).on("click", ".carousel-caption .btn-primary", async function () { // see more 클릭시
             let hobbyName = $(this).closest(".carousel-caption").find("h1").text().trim(); // 취미명과 일치하는 요소 찾기
 
@@ -374,16 +373,13 @@ $(document).on("click", ".btn-secondary", async function () {
         youtube_temp_html = `<div>##유튜브 링크 없음.##</div>`;
     } else {
         youtubeIndexOfValue.forEach(function(youtube){
-            youtube_temp_html += `<div><a href="${addresses[youtube]}">${addresses[youtube]}</a></div>`;
-
         // 유튜브 내보내기
         var str = addresses[youtube];
         var address = str.split('v=');
 
         // 유튜브 추가
         let Youtub_new = `
-        <p><br /><"${linkNames[1]}"><br /></p>
-        <div> <iframe width="855" height="480" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;</div>`
+        <div class="youtubeView_d"><div class="y_next">${linkNames[youtube]}</div><div class="y2_next">🔻</div> <iframe width="855" height="480" src="https://youtube.com/embed/${address[1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
         $('#youtubeView').append(Youtub_new);
         })
     }
@@ -392,18 +388,18 @@ $(document).on("click", ".btn-secondary", async function () {
     } else {
         namuwikiIndexOfValue.forEach(function(namu){
             namuwiki_temp_html += `
-            <div class="namu_box"><a href="${addresses[namu]}">${linkNames[namu]}</a></div>`;
+            <div class="namu_box"><a href="${addresses[namu]}" target="_blank ">${linkNames[namu]}</a></div>`;
         })
     }
     if(photoIndex == -1){
         photo_temp_html = `<div>##사진 없음.##</div>`;
     } else {
         photoIndexOfValue.forEach(function(photo){
+
             photo_temp_html += `
-            <div class="inline"><div class="img_box"><img src="${addresses[photo]}"></img><a href="${addresses[photo]}"></a></div><p>"<${linkNames[photo]}>"</p></div>`;
+            <div class="inline"><div class="img_box"><img src="${addresses[photo]}"></img><a href="${addresses[photo]}" target="_blank "></a><div class="t_next">${linkNames[photo]}</div></div class="t_next">`;
         })
     }
-    $('#youtubeView').append(youtube_temp_html);
     $('#namuwikiView').append(namuwiki_temp_html);
     $('#photoView').append(photo_temp_html);
 
@@ -411,9 +407,13 @@ $(document).on("click", ".btn-secondary", async function () {
 });
 
 
+$('.deleteBtn').click( async function(){
+    this.parent().remove();
+    this.previousSibling.remove();
+    this.remove();
+})
 
-
-
+  
 
 
 
