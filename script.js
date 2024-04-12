@@ -32,6 +32,8 @@ $('#F_new_Id').click(function () {
   $('#login_new_L').removeClass('hidden')
   $('#login_f_pw_L').addClass('hidden')
   $('.id_menu').addClass('show')
+  $('#login_pw').removeClass('hidden')
+  
 });
 
 $('#F_fw').click(function () {
@@ -40,6 +42,8 @@ $('#F_fw').click(function () {
   $('#login_new').addClass('hidden')
   $('#login_new_L').addClass('hidden')
   $('.id_menu').addClass('show')
+  $('#login_pw').addClass('hidden')
+  
 });
 /*가입 설정 추가*/
 
@@ -65,10 +69,11 @@ $('#contents_view > li').children('button').click(function () {
 
 })
 
+
 // 매뉴 따라오게 만들기
 $(document).ready(function() {
-  var $floatingElement = $('#box2');
-  var floatingStart = 450; // 요소가 이동을 시작할 스크롤 위치를 설정합니다.
+  var $floatingElement = $('.category2');
+  var floatingStart = 700; // 요소가 이동을 시작할 스크롤 위치를 설정합니다.
 
   $(window).scroll(function() {
       var scrollPosition = $(this).scrollTop();
@@ -78,14 +83,20 @@ $(document).ready(function() {
           // 요소의 위치를 조정하여 스크롤과 함께 이동하도록 합니다.
           $floatingElement.css({
               'position': 'fixed',
-              'top': '0'
+              'top': '0',
+              'display': ''
           });
+
       } else {
           // 아니면 원래 위치로 되돌립니다.
           $floatingElement.css({
               'position': 'absolute',
-              'top': '448px' // 시작 위치
+              'top': '448px', // 시작 위치
+              'display': 'none'
           });
+
       }
   });
 });
+
+
