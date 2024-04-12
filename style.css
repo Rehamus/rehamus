@@ -30,9 +30,16 @@ a {
 
 body{
   background-color:var(--web_bd1_color) !important;
-  
+   -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+  display: none;
 }
 
+.inline{
+  display: inline-block;
+}
 /* 로그인 */
 .ID_log > *{
   transition: all .8s;
@@ -155,7 +162,7 @@ body{
   visibility: visible;
 }
 .hidden{
-  transition: all 3s;
+
   display: none;
   visibility: hidden;
 }
@@ -176,6 +183,7 @@ body{
 }
 /*회원가입 완료*/
 
+/* 링크 박스 */
 .img_box{
   height: 300px;
   width: 300px;
@@ -183,12 +191,38 @@ body{
   box-shadow:0 1px 2px rgba(0,0,0,0.3),
     0 1px 3px rgba(0,0,0,0.15);
     transition: box-shadow .3s;
-
     margin: 20px;
 }.img_box:hover{
   box-shadow:0 10px 10px rgba(0,0,0,0.3),
     0 14px 28px rgba(0,0,0,0.3);
-
+}
+.namu_box{
+  display: inline-flex;
+}
+.namu_box *{
+  border: 3px solid white;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 2rem;
+  background-color: var(--web_bd3_color);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow:0 1px 2px rgba(0,0,0,0.3),
+  0 1px 3px rgba(0,0,0,0.15);
+  transition: box-shadow .3s,background-color .3s , color .2s; ;
+  margin: 5px;  
+}.namu_box:hover *{
+  color: black;
+  border: 2px solid black;
+  background-color: white;
+  box-shadow:0 10px 10px rgba(0,0,0,0.3),
+  0 14px 28px rgba(0,0,0,0.3);
 }
 
 .img_box > *{
@@ -204,11 +238,67 @@ body{
   margin-left: -10%;
   width: 130%;
   height: 130%;
-  transition: all .6s;
+
   box-shadow:0 10px 10px rgba(0,0,0,0.3),
   0 14px 28px rgba(0,0,0,0.3);
   z-index: 20;
 }
+
+/*링크박스 끝*/
+
+
+
+
+
+
+
+/* 각 항목 디자인 만들기*/
+.hobbyTitle{
+  padding: 20px;
+  text-align: left;
+  background-color: gold;
+}
+#contents_view{
+  padding: 0;
+}#contents_view > li > div{
+  margin-left: 40px;
+}#contents_view > li > button{
+  border: 2px solid black;
+}
+
+
+#Youtube{
+  background-color: red;
+
+  position: relative;
+}
+
+
+#namuwitki{
+  background-color: rgb(51, 51, 51);
+
+  position: relative;
+}
+
+
+#Sagin{
+  background-color: rgb(214, 214, 214);
+
+  position: relative;
+}
+
+
+
+/*각 항목 디자인 만들기 끝*/
+
+
+
+
+
+
+
+
+
 
 
 * {
@@ -246,12 +336,15 @@ ul {
     background-color: #ffffff;
     color: black;
     font-size: 20px;
-
+    top: 448px;
+    right: 0;
+    position: fixed;
     text-align: center;
     display: fixed;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.12);
 }
 
 /* 새로운 취미명 입력 + 링크추가 입력 modal창 */
@@ -295,7 +388,7 @@ ul {
   background-color: #0f6aa7;
 }
 .T_menu{
-  background-color: var(--web_bd1_color);
+  /*background-color: var(--web_bd1_color);*/
 }
 #category > button{
   color: black;
