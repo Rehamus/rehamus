@@ -195,7 +195,25 @@ body{
 }.img_box:hover{
   box-shadow:0 10px 10px rgba(0,0,0,0.3),
     0 14px 28px rgba(0,0,0,0.3);
+}.img_box > img{
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
+.img_box:hover > img{
+  object-fit:contain;
+  margin-top: -20%;
+  margin-left: -10%;
+  width: 130%;
+  height: 130%;
+
+  box-shadow:0 10px 10px rgba(0,0,0,0.3),
+  0 14px 28px rgba(0,0,0,0.3);
+  z-index: 20;
+}
+
 .namu_box{
   display: inline-flex;
 }
@@ -216,7 +234,7 @@ body{
   box-shadow:0 1px 2px rgba(0,0,0,0.3),
   0 1px 3px rgba(0,0,0,0.15);
   transition: box-shadow .3s,background-color .3s , color .2s; ;
-  margin: 5px;  
+  margin: 5px;
 }.namu_box:hover *{
   color: black;
   border: 2px solid black;
@@ -225,24 +243,6 @@ body{
   0 14px 28px rgba(0,0,0,0.3);
 }
 
-.img_box > *{
-  position: relative;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-}
-.img_box:hover > *{
-  object-fit:contain;
-  margin-top: -20%;
-  margin-left: -10%;
-  width: 130%;
-  height: 130%;
-
-  box-shadow:0 10px 10px rgba(0,0,0,0.3),
-  0 14px 28px rgba(0,0,0,0.3);
-  z-index: 20;
-}
 
 /*링크박스 끝*/
 
@@ -254,9 +254,12 @@ body{
 
 /* 각 항목 디자인 만들기*/
 .hobbyTitle{
-  padding: 20px;
+  opacity: .7;
+  transform: translate( 3%,20%);
+  padding: 10px;
   text-align: left;
-  background-color: gold;
+  font-size: 3.6rem;
+  font-weight: bolder ;
 }
 #contents_view{
   padding: 0;
@@ -266,26 +269,120 @@ body{
   border: 2px solid black;
 }
 
+#contents_view button{
+  display:block;
+  width: 100%;
+  padding: 0;
+  align-items: center;
+}
+#contents_view button > p{
+  display:inline-block;
+  margin: 0;
+  color: white;
+  font-weight: bolder;
+}
 
 #Youtube{
+
+}
+#youtubeOpencloseBtn{
   background-color: red;
 
-  position: relative;
+}
+#youtubeOpencloseBtn p:first-child{
+  background-color: red;
+  width: 80%;
+  padding: 5px;
+}
+#youtubeOpencloseBtn p:last-child{
+  background-color: red;
+  width: 19%;
+  padding: 5px;
 }
 
 
 #namuwitki{
+  background-color: rgb(97, 97, 97);
+
+}
+#namuOpencloseBtn{
+  margin-bottom: 25px;
   background-color: rgb(51, 51, 51);
 
-  position: relative;
+}
+#namuOpencloseBtn p:first-child{
+  background-color: rgb(51, 51, 51);
+  width: 80%;
+  padding: 5px;
+}
+#namuOpencloseBtn p:last-child{
+  background-color: rgb(51, 51, 51);
+  width: 19%;
+  padding: 5px;
 }
 
 
 #Sagin{
   background-color: rgb(214, 214, 214);
 
-  position: relative;
 }
+#photoOpencloseBtn{
+  background-color: rgb(99, 87, 87);
+
+}
+#photoOpencloseBtn p:first-child{
+  background-color: rgb(99, 87, 87);
+  width: 80%;
+  padding: 5px;
+
+}
+#photoOpencloseBtn p:last-child{
+  background-color: rgb(99, 87, 87);
+  width: 19%;
+  padding: 5px;
+}
+.t_next{
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  padding: 2px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  box-shadow:0 1px 2px rgba(0,0,0,0.3),
+  0 1px 3px rgba(0,0,0,0.15);
+}
+.y_next{
+  display: inline-block;
+  margin-top: 5px;
+  width: 800px;
+  background-color: rgb(230, 37, 37);
+  padding: 2px;
+  color: rgb(253, 253, 253);
+  text-align: center;
+  box-shadow:0 1px 2px rgba(0,0,0,0.3),
+  0 1px 3px rgba(0,0,0,0.15);
+}
+.y2_next{
+  display: inline-block;
+
+  width: 55px;
+  background-color: rgb(230, 37, 37);
+  padding: 2px;
+  color: rgb(253, 253, 253);
+  text-align: center;
+  box-shadow:0 1px 2px rgba(0,0,0,0.3),
+  0 1px 3px rgba(0,0,0,0.15);
+}
+.youtubeView_d{
+  margin-top: 20px;
+  
+}.youtubeView_d > iframe{
+  box-shadow:0 1px 2px rgba(0,0,0,0.3),
+  0 1px 3px rgba(0,0,0,0.15);
+  
+}
+
+
+
 
 
 
@@ -338,7 +435,6 @@ ul {
     font-size: 20px;
     top: 448px;
     right: 0;
-    position: fixed;
     text-align: center;
     display: fixed;
     flex-direction: column;
@@ -396,4 +492,15 @@ ul {
 }
 .container{
   background-color: white;
+}
+.fixed_but{
+  display: inline-block;
+  background-color: var(--web_b_color);
+  color: black;
+  transform: translateX(40px);
+  width: 80%;
+  font-size: .9rem;
+  margin-top: 3px;
+  border: 1px solid black;
+  border-radius: 3px 0px 0px 3px;
 }
